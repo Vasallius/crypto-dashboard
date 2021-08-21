@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "my-font";
+  src: url("DMSans-Bold.ttf");
+}
+
+.card-body {
+  color: #28394f;
+  font-family: "my-font";
+  font-weight: 700;
+  font-style: normal;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .card {
+    @apply flex w-44 h-32 rounded-lg shadow-md justify-center items-center;
+  }
+  ,
+  .lg-text {
+    @apply text-4xl text-main-gray font-DM-Sans font-bold;
+  }
+
+  .md-text {
+    @apply text-xl text-main-gray font-DM-Sans font-bold;
+  }
+
+  .sm-text {
+    @apply text-base text-main-gray font-Roboto font-light;
+  }
+}
