@@ -21,8 +21,8 @@ Create a `.env` file in the root directory that looks exactly like this (don't c
 ```py
 .env
 
-API_KEY = h6QBbfGT0OIyPJLTHcua57Zrl5dxZqrKshPMbyTH1SIPCHiQv9Og4kNLrS58LkId
-API_SECRET = wbz17g5uWRzZ1C2vJsEH7Qvkdi3aNxVpggYJqm1Xl3k70dnWebLB3l1NM9K2f9BB
+API_KEY = put-your-api-key-here
+API_SECRET = put-your-api-secret-here
 ```
 
 Install the necessary dependencies by running:
