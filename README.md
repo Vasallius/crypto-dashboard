@@ -16,7 +16,7 @@ In order to fetch coin data yo need to create a [Binance](https://www.binance.co
 ![How to create API Key](https://github.com/Vasallius/crypto-dashboard/blob/master/media/create_api.gif)
 
 I use python's `dot-env` module to store these api details on environment variable and later access them via `os.getenv()`. 
-Create a `.env` file in the root directory that looks exactly like this (don't change the variable names, don't wrap in quotation `"` marks):
+Create a `.env` file in the root directory that looks exactly like this (don't change the variable names, don't wrap in quotation `"` marks) and place in your api key and secret:
 
 ```py
 .env
