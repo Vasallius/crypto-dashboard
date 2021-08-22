@@ -1,38 +1,57 @@
+![Tab 1](https://github.com/Vasallius/crypto-dashboard/blob/master/media/tab-1.png)
 # 📈 Crypto Dashboard
 
-![GitHub last commit](https://img.shields.io/github/last-commit/Vasallius/crypto-dashboard)
+![GitHub last commit](https://img.shields.io/github/last-commit/Vasallius/crypto-dashboard) ![GitHub issues](https://img.shields.io/github/issues-raw/Vasallius/crypto-dashboard)
 
 
 ## 🔶 Project Overview
 
-This project is used to analyze cryptocurrency coins by showing the outliers and proving semi-realtime signals using the RCS system.
+This project is used to analyze cryptocurrency coins listed at [Binance](https://www.binance.com/en) by showing the outliers based on relative 2 Day and 7 Day change along with other technical indicators such as Relative Strength Index (RSI), Choppiness Index (CHOP), Stochastics (STOCH). It also aims to leverage the RCS system byproving semi-realtime signals coupled with a risk score to aid traders in making a decision.
 
-## 🔶 Design
 
-This is the current design layout of the project. If you're a UI designer, please feel free to reach out!
+## 🔶 Getting Started
 
-![Tab 1](https://github.com/Vasallius/crypto-dashboard/blob/master/media/tab-1.png)
-![Tab 2](https://github.com/Vasallius/crypto-dashboard/blob/master/media/tab-2.png)
+In order to fetch coin data yo need to create a [Binance](https://www.binance.com/en) account and perform basic verification. Next, we need to create our own api key and secret.
 
-## 🔶 How to Use
-
-- Create a Binance account and perform KYC
-- Create an API Key  
 ![How to create API Key](https://github.com/Vasallius/crypto-dashboard/blob/master/media/create_api.gif)
-- Install the necessary libraries using `pip install -r requirements.txt`
-- Run the main notebook in an editor of your choice.
+
+I use python's `dot-env` module to store these api details on environment variable and later access them via `os.getenv()`. 
+Create a `.env` file in the root directory that looks exactly like this (don't change the variable names, don't wrap in quotation `"` marks):
+
+```py
+.env
+
+API_KEY = h6QBbfGT0OIyPJLTHcua57Zrl5dxZqrKshPMbyTH1SIPCHiQv9Og4kNLrS58LkId
+API_SECRET = wbz17g5uWRzZ1C2vJsEH7Qvkdi3aNxVpggYJqm1Xl3k70dnWebLB3l1NM9K2f9BB
+```
+
+Install the necessary dependencies by running:
+```py
+pip install -r requirements.txt
+```
+
+The project is currently ran on Jupyter Notebooks, so open up your favorite text editor and run the notebook there. Follow the link and the website should open in your local browser.
+
+
+## 🔶 Support
+
+If there are any concerns or problems, please don't hesistate to raise an issue!
 
 ## 🔶 Contributing
 
-Pull requests are welcomed and encouraged. For major changes, please open an issue first to discuss what you would like to change. For design changes, feel free to email me so we can work on the figma file.
+If you would like to contribute, do the following: 
 
-- Vasallius <jotan7@up.edu.ph>
+1. Fork it (https://github.com/Vasallius/crypto-dashboard/fork)
+2. Create your feature branch (git checkout -b feature/fooBar)
+3. Commit your changes (git commit -am 'Add some fooBar')
+4. Push to the branch (git push origin feature/fooBar)
+5. Create a new Pull Request
+
 
 ## 🔶 Roadmap and Pending Features
 
 - Implement Figma Layout
 - Use external database 
 - External script to self-populate & maintain database
-- Alerts
+- Alerts Section
 - Position Size Calculator
-
