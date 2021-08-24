@@ -74,22 +74,6 @@ for symbol in symbols_list:
 
     # TODO: #4 change method of counting trend of trends
     try:
-        bluesky = (close > ma_20) & (ma_20 > ma_50) & (ma_50 > ma_100)
-        retrace = (close < ma_20) & (ma_20 > ma_50) & (ma_50 > ma_100)
-        reset = (ma_20 < ma_50) & (ma_50 > ma_100)
-        reversal = (ma_20 > ma_50) & (ma_50 < ma_100)
-        downtrend = (ma_100 > ma_50) & (ma_50 > ma_20)
-        df['bluesky'] = bluesky
-        df['retrace'] = retrace
-        df['reset'] = reset
-        df['reversal'] = reversal
-        df['downtrend'] = downtrend
-    except Exception as e:
-        print(symbol, e)
-        continue
-
-    # Calculate changes and append to dataframe
-    try:
         D1chg = (df.iloc[-1].close - df.iloc[-2].open) / df.iloc[-2].open
         D2chg = (df.iloc[-1].close - df.iloc[-3].open) / df.iloc[-3].open
         D7chg = (df.iloc[-1].close - df.iloc[-8].open) / df.iloc[-8].open
@@ -108,7 +92,18 @@ for symbol in symbols_list:
     master_df = master_df.append(df.iloc[len(df.index)-30:])
 
 
-# Keep track of trends for Trend of Trends
+# Filter the data and count Trend of Trends
+
+master_df = master_df.reset_index()
+master_df = master_df.drop(columns=['index'])
+
+close_gt_ma20 = master_df['close'] > master_df["MA(20)"]
+close_lt_ma20 = master_df['close'] < master_df["MA(20)"]
+ma20_gt_ma50 = master_df["MA(20)"] > master_df["MA(50)"]
+ma20_lt_ma50 = master_df["MA(20)"] < master_df["MA(50)"]
+ma50_gt_ma100 = master_df["MA(50)"] > master_df["MA(100)"]
+ma50_lt_ma100 = master_df["MA(50)"] < master_df["MA(100)"]
+
 bluesky = []
 retrace = []
 reset = []
@@ -120,20 +115,17 @@ lacking_data = []
 for date in list(master_df[-30:]['date']):
     current = master_df[master_df['date'] == date]
 
-    bluesky.append(current['bluesky'].value_counts().get(
-        True)/sym_length if current['bluesky'].value_counts().get(True) != None else 0)
+    bl = len(current[close_gt_ma20 & ma20_gt_ma50 & ma50_gt_ma100])/sym_length
+    rt = len(current[close_lt_ma20 & ma20_gt_ma50 & ma50_gt_ma100])/sym_length
+    rs = len(current[ma20_lt_ma50 & ma50_gt_ma100])/sym_length
+    rv = len(current[ma20_gt_ma50 & ma50_lt_ma100])/sym_length
+    d = len(current[close_lt_ma20 & ma20_lt_ma50 & ma50_lt_ma100])/sym_length
 
-    retrace.append(current['retrace'].value_counts().get(
-        True)/sym_length if current['retrace'].value_counts().get(True) != None else 0)
-
-    reset.append(current['reset'].value_counts().get(
-        True)/sym_length if current['reset'].value_counts().get(True) != None else 0)
-
-    reversal.append(current['reversal'].value_counts().get(
-        True)/sym_length if current['reversal'].value_counts().get(True) != None else 0)
-
-    downtrend.append(current['downtrend'].value_counts().get(
-        True)/sym_length if current['downtrend'].value_counts().get(True) != None else 0)
+    bluesky.append(bl if bl != None else 0)
+    retrace.append(rt if rt != None else 0)
+    reset.append(rs if rs != None else 0)
+    reversal.append(rv if rv != None else 0)
+    downtrend.append(d if d != None else 0)
 
 
 # Only plot above symbols that have above average 2 day and 7 day change
