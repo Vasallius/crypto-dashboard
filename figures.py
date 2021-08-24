@@ -1,4 +1,4 @@
-from data import twomean, sevenmean, revised, master_df
+from data import revised, master_df
 from data import bluesky, retrace, reset, reversal, downtrend, lacking_data
 import plotly.express as px
 import plotly.graph_objects as go
@@ -20,7 +20,7 @@ ToT_mapper = {
 
 
 scatter_fig = px.scatter(revised, x='2D Δ', y='7D Δ',
-                         color="rsi", color_continuous_scale="Rainbow")
+                         color="RSI", color_continuous_scale="Rainbow")
 scatter_fig.update_traces(
     mode="markers+text",
     text=revised['Symbol'],
@@ -109,4 +109,4 @@ pie_fig.update_layout(height=280)
 pie_fig.update_traces(hoverinfo='label+percent', textfont_size=16,
                       marker=dict(colors=colors, line=dict(color='#000000', width=2)))
 
-print("sucess")
+print("Figures.py successfully loaded.")
