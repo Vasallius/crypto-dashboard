@@ -10,8 +10,9 @@ from boto.s3.connection import S3Connection
 # Connect to API
 # api_key = os.getenv("API_KEY")
 # api_secret = os.getenv("API_SECRET")
-api_key, api_secret = S3Connection(
-    os.environ['API_KEY'], os.environ['API_SECRET'])
+api_key = os.environ.get("API_KEY")
+api_secret = os.environ.get("API_SECRET")
+print(api_key, api_secret)
 # load_dotenv()
 client = Client(api_key, api_secret)
 
