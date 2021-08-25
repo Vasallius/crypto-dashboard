@@ -1,4 +1,4 @@
-from data import revised, master_df
+from data import revised, dates
 from data import bluesky, retrace, reset, reversal, downtrend, lacking_data
 import plotly.express as px
 import plotly.graph_objects as go
@@ -58,7 +58,6 @@ scatter_fig.update_layout(
 
 
 line_data = []
-dates = master_df['date'].unique()
 for trend, color in ToT_mapper.items():
     scatter_chart = go.Scatter(
         x=dates,

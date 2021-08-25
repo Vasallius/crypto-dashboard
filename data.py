@@ -37,7 +37,7 @@ sentiment = {
 
 err_symbols = []
 for symbol in symbols_list:
-
+    print(f'{symbol} loaded.')
     # Gets OHLCV values
     d_klines = [[float(num) for num in dta[:6]] for dta in client.get_historical_klines(
         symbol, Client.KLINE_INTERVAL_1DAY, d_start, d_end)]
@@ -72,7 +72,6 @@ for symbol in symbols_list:
     df['MA(50)'] = ma_50
     df['MA(100)'] = ma_100
 
-    # TODO: #4 change method of counting trend of trends
     try:
         D1chg = (df.iloc[-1].close - df.iloc[-2].open) / df.iloc[-2].open
         D2chg = (df.iloc[-1].close - df.iloc[-3].open) / df.iloc[-3].open
@@ -91,6 +90,7 @@ for symbol in symbols_list:
     # Only get last 30 trading days for ToT
     master_df = master_df.append(df.iloc[len(df.index)-30:])
 
+dates = master_df['date'].unique()
 
 # Filter the data and count Trend of Trends
 
