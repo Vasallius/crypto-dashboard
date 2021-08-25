@@ -4,16 +4,15 @@ from dotenv import load_dotenv
 import datetime as dt
 import pandas as pd
 import pandas_ta as ta
-from boto.s3.connection import S3Connection
 
 
 # Connect to API
-# api_key = os.getenv("API_KEY")
-# api_secret = os.getenv("API_SECRET")
-api_key = os.environ.get("API_KEY")
-api_secret = os.environ.get("API_SECRET")
+api_key = os.getenv("API_KEY")
+api_secret = os.getenv("API_SECRET")
+# api_key = os.environ.get("API_KEY")
+# api_secret = os.environ.get("API_SECRET")
 print(api_key, api_secret)
-# load_dotenv()
+load_dotenv()
 client = Client(api_key, api_secret)
 
 
@@ -68,13 +67,16 @@ for symbol in symbols_list:
 
     close = df['close']
 
-    df['RSI(14)'] = rsi
-    df['CHOP(28)'] = chop
-    df['STOCH_K'] = round(stoch['STOCHk_14_3_3'], 2)
-    df['STOCH_D'] = round(stoch['STOCHd_14_3_3'], 2)
-    df['MA(20)'] = ma_20
-    df['MA(50)'] = ma_50
-    df['MA(100)'] = ma_100
+    try:
+        df['RSI(14)'] = rsi
+        df['CHOP(28)'] = chop
+        df['STOCH_K'] = round(stoch['STOCHk_14_3_3'], 2)
+        df['STOCH_D'] = round(stoch['STOCHd_14_3_3'], 2)
+        df['MA(20)'] = ma_20
+        df['MA(50)'] = ma_50
+        df['MA(100)'] = ma_100
+    except:
+        continue
 
     try:
         D1chg = (df.iloc[-1].close - df.iloc[-2].open) / df.iloc[-2].open
