@@ -4,12 +4,15 @@ from dotenv import load_dotenv
 import datetime as dt
 import pandas as pd
 import pandas_ta as ta
+from boto.s3.connection import S3Connection
 
 
 # Connect to API
-api_key = os.getenv("API_KEY")
-api_secret = os.getenv("API_SECRET")
-load_dotenv()
+# api_key = os.getenv("API_KEY")
+# api_secret = os.getenv("API_SECRET")
+api_key, api_secret = S3Connection(
+    os.environ['API_KEY'], os.environ['API_SECRET'])
+# load_dotenv()
 client = Client(api_key, api_secret)
 
 
