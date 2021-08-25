@@ -28,24 +28,30 @@ scatter_fig.update_traces(
     textfont_size=10,
 )
 scatter_fig.update_layout(
-    xaxis_title="2 Day Change",
-    yaxis_title="7 Day Change",
-    yaxis_visible=True,
-    xaxis_visible=True,
-    xaxis_showgrid=False,
-    yaxis_showgrid=False,
+    xaxis=dict(
+        title="2 Day Change",
+        visible=True,
+        showgrid=False,
+        tick0=0,
+        dtick=0.25,
+        tickformat=',.0%',
+    ),
+    yaxis=dict(
+        title="7 Day Change",
+        visible=True,
+        showgrid=False,
+        tick0=0,
+        dtick=0.25,
+        tickformat=',.0%',
+    ),
     plot_bgcolor="#FFFFFF",
     margin=dict(
         l=20,
         r=20,
         t=30,
         b=20),
-    height=548
+    height=548,
 )
-scatter_fig.update_yaxes(tick0=0, dtick=0.25, tickformat=',.0%',)
-scatter_fig.update_xaxes(tick0=0, dtick=0.10, tickformat=',.0%',)
-# scatter_fig.update_layout(margin=dict(l=20, r=20, t=30, b=20))
-# scatter_fig.update_layout(height=548)
 
 
 # === Trend of Trends (Line)===
