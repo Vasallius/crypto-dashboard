@@ -39,7 +39,7 @@ sentiment = {
 }
 
 err_symbols = []
-for symbol in symbols_list:
+for symbol in symbols_list[:3]:
     print(f'{symbol} loaded.')
     # Gets OHLCV values
     d_klines = [[float(num) for num in dta[:6]] for dta in client.get_historical_klines(
