@@ -7,5 +7,7 @@ server = app.server
 
 app.layout = layout
 
+PORT = os.environ.get('PORT')
+
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug=False, port=PORT)
