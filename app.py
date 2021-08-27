@@ -12,9 +12,19 @@ app.layout = html.Div([
     # === Navbar ===
     html.Div([
 
+        html.Div([
+            html.Img(src="./assets/logo.svg"),
+            html.Img(src="./assets/dashboard.svg"),
+            html.Img(src="./assets/gear.svg"),
+            html.Img(src="./assets/alerts.svg")
+        ], className="flex flex-col items-center justify-between",
+            style={
+            'height': '245px',
+            'marginTop': '28px'
+        })
 
     ],
-        className="h-screen flex flex-col items-center",
+        className="h-screen ",
         style={
             'width': 76,
             'background': 'linear-gradient(180deg, #E30F0F 0%, #150202 0.01%, rgba(0, 0, 0, 0) 100%)',
